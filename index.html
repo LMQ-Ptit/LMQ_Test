@@ -299,10 +299,15 @@
           .querySelector(".listSlider")
           .prepend(slider[slider.length - 1]);
       });
-
+// Thay thế đoạn code từ dòng 327 đến 350 bằng đoạn code sau:
     document
       .querySelector(".buttonLove")
       .addEventListener("click", function () {
+        // Hiển thị form thư ngay lập tức khi click vào nút
+        $(".wrapperLetterForm").fadeIn();
+        funcTimeoutLetter();
+        
+        // Tạo hiệu ứng thư rơi như hiệu ứng nền
         let timeout = setInterval(() => {
           var letters = document.createElement("div");
           letters.className = "letters";
@@ -319,14 +324,12 @@
           setTimeout(() => {
             letters.remove(); 
           }, 11000);
-          document.querySelectorAll(".letters").forEach((item) => {
-            item.addEventListener("click", function () {
-              clearInterval(timeout);
-              $(".wrapperLetterForm").fadeIn();
-              funcTimeoutLetter();
-            });
-          });
         }, 500);
+        
+        // Dừng hiệu ứng thư rơi sau 10 giây
+        setTimeout(() => {
+          clearInterval(timeout);
+        }, 10000);
       });
 
     document.querySelector(".fa-xmark").addEventListener("click", function () {
